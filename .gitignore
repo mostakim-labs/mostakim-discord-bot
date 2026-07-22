@@ -1,0 +1,15 @@
+node_modules
+package-lock.json
+.env
+.env.local
+.env.*.local
+Database
+.next/
+pnpm-debug.log*
+npm-debug.log*
+.DS_Store
+replit.md
+.agents
+.replit
+replit.nix
+.agents/memory

@@ -1,0 +1,19 @@
+{
+  "name": "MOSTAKIM Discord Bot Admin",
+  "short_name": "MostakimBot",
+  "description": "Discord Bot Admin Dashboard",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#070710",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["utilities", "productivity"],
+  "shortcuts": [
+    { "name": "Overview", "url": "/dashboard", "description": "Go to dashboard overview" },
+    { "name": "Servers", "url": "/dashboard/servers", "description": "Manage servers" }
+  ]
+}

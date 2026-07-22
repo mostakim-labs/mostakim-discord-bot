@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens ─────────────────────────────────── */
+:root {
+  --purple: #7c3aed;
+  --blue: #3b82f6;
+  --bg: #070710;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+  --text-muted: rgba(255,255,255,0.4);
+}
+
+/* ─── Base reset ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background-color: var(--bg);
+  color: #fff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Prevent horizontal overflow globally */
+#__next, main { max-width: 100vw; overflow-x: hidden; }
+
+/* ─── Custom scrollbar ────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.3); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(124,58,237,0.6); }
+
+/* ─── Glassmorphism card ──────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.glass-strong {
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ─── Gradient border wrapper ────────────────────────── */
+.grad-border {
+  position: relative;
+  border-radius: 22px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(124,58,237,0.55) 0%,
+    rgba(59,130,246,0.25) 50%,
+    rgba(236,72,153,0.18) 100%
+  );
+}
+
+.grad-border > * { border-radius: 21px; }
+
+/* ─── Inputs ─────────────────────────────────────────── */
+.input-dark {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 14px;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  width: 100%;
+  padding: 14px 48px;
+  font-size: 15px;
+  outline: none;
+  line-height: 1.5;
+}
+
+.input-dark::placeholder { color: rgba(255,255,255,0.28); }
+
+.input-dark:focus {
+  border-color: rgba(124,58,237,0.8);
+  background: rgba(124,58,237,0.07);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.14);
+}
+
+.input-dark.error {
+  border-color: rgba(239,68,68,0.8);
+  background: rgba(239,68,68,0.06);
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+}
+
+/* ─── OTP boxes ──────────────────────────────────────── */
+.otp-box {
+  width: 60px;
+  height: 68px;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+  transition: all 0.18s ease;
+  caret-color: #7c3aed;
+}
+
+.otp-box:focus {
+  border-color: #7c3aed;
+  background: rgba(124,58,237,0.1);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.2), 0 0 18px rgba(124,58,237,0.14);
+  transform: scale(1.04);
+}
+
+.otp-box.filled  { border-color: rgba(124,58,237,0.6); background: rgba(124,58,237,0.12); }
+.otp-box.error   { border-color: rgba(239,68,68,0.8); background: rgba(239,68,68,0.08); animation: shake 0.4s ease-in-out; }
+
+/* ─── Gradient button ────────────────────────────────── */
+.btn-grad {
+  background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  width: 100%;
+  padding: 15px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s, opacity 0.15s;
+  letter-spacing: 0.2px;
+}
+
+.btn-grad::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #6d28d9 0%, #2563eb 100%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.btn-grad:hover::before { opacity: 1; }
+.btn-grad:active { transform: scale(0.98); }
+.btn-grad:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ─── Gradient text ───────────────────────────────────── */
+.grad-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Background blobs ───────────────────────────────── */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Animations ──────────────────────────────────────── */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-8px); }
+  40%     { transform: translateX(8px); }
+  60%     { transform: translateX(-5px); }
+  80%     { transform: translateX(5px); }
+}
+
+@keyframes blob {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(35px, -55px) scale(1.08); }
+  66%  { transform: translate(-25px, 28px) scale(0.93); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* ─── Safe area ───────────────────────────────────────── */
+.safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-area-bottom { padding-bottom: calc(env(safe-area-inset-bottom) + 0px); }
+}
+
+/* ─── Card shadows ────────────────────────────────────── */
+.shadow-glow { box-shadow: 0 0 24px rgba(124,58,237,0.35); }
+.shadow-card { box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04); }
+
+/* ─── Mobile-safe table ──────────────────────────────── */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+/* ─── Utility: text never clips vertically ─────────────── */
+.text-safe {
+  overflow: visible;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* ─── Responsive font helpers ────────────────────────── */
+.text-fluid-sm  { font-size: clamp(0.7rem,  2vw, 0.875rem); }
+.text-fluid-base{ font-size: clamp(0.875rem, 2.5vw, 1rem); }
+.text-fluid-lg  { font-size: clamp(1rem,    3vw,  1.25rem); }
+.text-fluid-xl  { font-size: clamp(1.25rem, 4vw,  1.75rem); }
+
+/* ─── Select element base ──────────────────────────────── */
+select option { background: #0d0d1a; color: #fff; }
+
+/* ─── Framer motion layout fix ───────────────────────── */
+[data-framer-component-type] { max-width: 100%; }
